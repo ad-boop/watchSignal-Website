@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <title>Search Products</title>
+      <link rel = "icon" type = "image/png" href = "images/logo.png">
+      <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="css/style.css">
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://kit.fontawesome.com/5f8b2c930b.js" crossorigin="anonymous"></script>
+   <body>
+
+      <!-- header -->
+      <header>
+         <h2 class="logo"><a href="home.html"><span>w</span>atch <span>s</span>ignal</a></h2>
+
+         <!-- search bar right align -->
+        <div class="search">
+            <input type="text" placeholder=" Search Products" id="search" />
+            <!-- <input type="submit" value="SEARCH" /> -->
+            <a class="button" onclick="getSearch()" id="search-btn">
+              <i class="fa fa-search" style="font-size: 18px"> </i>
+            </a>
+      
+        </div>
+
+         <!-- navbar -->
+         <nav>
+            <ul id="MenuItems">
+               <li><a href="home.html">Home</a></li>
+               <li><a href="login.html">Login</a></li>
+               <li><a href="account.html">Account</a></li>
+            </ul>
+         </nav>
+
+         <!-- cart icon -->
+         <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+         <!-- menu toggle -->
+         <i class="fas fa-bars" onclick="menutoggle()"></i>
+      </header>
+
+
+      <!-- categories header -->
+      <div class="categories-header">
+         <ul id="MenuItems">
+            <li><a href="analog.html">Analog</a></li>
+            <li><a href="digital.html">Digital</a></li>
+            <li><a href="smart.html">Smart</a></li>
+         </ul>
+      </div>
+      
+      <!-- smart products container -->
+      <div class="search-products">
+         <h2 class="title">Search Products</h2>
+      
+         <!-- box container which contain product boxes for smart watches-->
+         <div class="box-container">
+      </div>
+      </div>
+
+      <!--FOOTER  -->
+      <footer>
+         <div class="footer-content">
+            <h3>watch signal</h3>
+            <p>For the love of watch, timeless</p>
+            <ul class="socials">
+               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+               <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+               <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+               <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+            <div class="admin-login"><a href="../cms/home.html">Admin Login</a></div>
+         </div>
+         <div class="footer-bottom">
+            <p>copyright &copy;2020 watch signal. designed by <span>group-5</span></p>
+         </div>
+      </footer>
+
+
+      <script src="js/main.js"></script>
+   
+
+       <!-- SCRIPT FOR GETTING RECOMMENDATIONS -->
+       <script  type='module'>
+         "use strict";
+
+         //Import recommender class
+         import {Recommendation} from './js/recommendation.js';
+
+         //Create recommender object - it loads its state from local storage
+         let recommender = new Recommendation();
+
+         document.getElementById("search-btn").addEventListener("click",function(){
+            let search = document.getElementById("search").value;
+            // adding the search words to the recommended words
+            recommender.addKeyword(search);
+         });
+   </script>
+
+   <!-- //    ============================================ SEARCHED PRODUCTS ===================================== -->
+   <script>
+      
+      function getSearch(){
+        //Attempts to log in user to server
+      let request = new XMLHttpRequest();
+               //Create event handler that specifies what should happen when server responds
+               request.onload = function(){
+                   //Check HTTP status code
+                   if(request.status === 200){
+                       console.log(request.responseText)
+
+                     //   displaying searched product boxes
+                       displaySearchedProductBox(request.responseText);
+                   }
+                   else
+                       console.log("Error");
+               };
+
+               //Extract login data
+               let search = document.getElementById("search").value;
+                               
+               //Set up and send request
+               request.open("POST", "php/search.php");
+               request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+               request.send("search=" + search);
+       }
+
+      
+        // function for displaying the analog products boxes
+        function displaySearchedProductBox(jsonProducts){
+          
+          // getting json data from php
+         let prodArray=JSON.parse(jsonProducts);
+
+         let htmlStr="";
+         for(let i=0; i<prodArray.length; ++i){
+            htmlStr +=  '<div class="product" >';
+            htmlStr +=  '<div class="product-card">';
+            htmlStr +=  '<h2 class="name">'+prodArray[i].product_name+'</h2>';
+            htmlStr +=  '<span class="price">'+prodArray[i].price+'</span>';
+            //   htmlStr +=  '<a class="popup-btn">View Details</a>' Popup box is not working
+            htmlStr += '<a onclick=\'addToCart("'+prodArray[i]._id.$oid+'","'+prodArray[i].product_name+'","'+prodArray[i].gender+'","'+prodArray[i].image+'","'+prodArray[i].price+'")\' class="addtocart" >Add to Cart</a>'; //class="add-cart-btn"
+            htmlStr +=  '<img src="'+prodArray[i].image+'" class="product-img" alt="Image Not Found" class="popup-btn">';
+            htmlStr +=  '</div>';
+            htmlStr +=  '</div>';
+         }
+       //   ADDING THE PRODUCTS TO BOX CONTAINER DIV
+         document.querySelector(".box-container").innerHTML = htmlStr;
+     }
+         </script>
+    
+     
+    <!-- js for adding products to cart -->
+     <script src="js/cart.js"></script>
+       
+   </body>
+</html>

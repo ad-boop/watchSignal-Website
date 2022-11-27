@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel = "icon" type = "image/png" href = "images/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/5f8b2c930b.js" crossorigin="anonymous"></script>
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- online stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/5f8b2c930b.js" crossorigin="anonymous"></script>
+    <!-- internal css for cart html -->
+    <style>
+      body{
+        width: 100%;
+        height: 100vh;
+        background-image: url("images/cart-bg.jpg");
+        background-position: center;
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+    </style>
+    <script>
+    function Reload(){
+      sessionStorage.removeItem("Cart");
+      location.reload();
+    }
+   </script>
+</head>
+<body>
+  
+    <header>
+       <!-- logo -->
+       <h2 class="logo"><a href="home.html"><span>w</span>atch <span>s</span>ignal</a></h2>
+        
+        <!-- nav-bar within the header -->
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="account.html">Account</a></li>
+            </ul>
+        </nav>
+        
+        <!-- cart link -->
+        <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+        
+        <!-- toggle button when screen is small -->
+        <i class="fas fa-bars" onclick="menutoggle()"></i>
+        <i class="fas fa-times" style="visibility: hidden;"></i>
+    </header>
+
+    <!--watch categories header -->
+    <div class="categories-header">
+        <ul id="MenuItems">
+            <li><a href="analog.html">analog</a></li>
+            <li><a href="digital.html">digital</a></li>
+            <li><a href="smart.html">smart</a></li>
+        </ul>
+    </div>
+    
+    <!-- cart section -->
+    <section class="cart">
+        <div class="shopping-cart">
+          <a href="" class="empty-cart" onClick="Reload()">Empty Cart</a>
+            <h2 class="title">
+              Shopping Cart
+            </h2>
+            <!-- products are displayed here-->
+
+            <div class="items"></div>
+             
+        </div>
+          
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>watch signal</h3>
+            <p>For the love of watch, timeless</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+            <div class="admin-login">
+                <a href="../cms/html/home.html">Admin Login</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy;2020 watch signal. designed by <span>group-5</span></p>
+        </div>
+    </footer>
+
+
+    <!-- JS FOR TOGGLE MENU -->
+    <script src="js/main.js"></script>
+
+   
+  <!-- script for cart working -->
+  <script src="js/cart.js"></script>
+
+  <!-- =========================================================================================================================== -->
+  <!-- script ofr CART DISPLAYING AND CART CHECKOUT AND EMPTY CART -->
+<script>
+        "use strict";
+
+        // script for ajax
+        window.onload = displayCart;
+        // function for loading the digital products from database
+        //global declarations
+        let cart;
+        var today = new Date();
+        let prodIDs = [];
+
+
+  //    ==================================== SORT ================================================
+ 
+  // display digital product Boxes
+  function displayCart() {
+    let cart = getCart();//Load or create Cart
+
+    // get json data from php
+    let htmlStr = "";
+    
+
+    for(let i = 0; i < cart.length; ++i) {
+        htmlStr += '<div class="item">';
+        htmlStr += '<div class="image">'; 
+        htmlStr += '<img src="' + cart[i].watch_image + '" alt="Image Not Found">';
+        htmlStr += '</div>';
+        htmlStr += '<div class="description">';
+        htmlStr += '<span>' + cart[i].watch_name + '</span>';
+        htmlStr += '<span>' + cart[i].watch_gender + '</span>';
+        htmlStr += '</div>';
+        htmlStr += '<div class="quantity-wrapper">';
+        htmlStr += '<span id="quantity"><input class="num" type="number" id="'+cart[i].id+'" min="1" max="5"  value="1"></span>'
+        htmlStr += '</div>';
+        htmlStr += '<div class="total-price" id="total_'+cart[i].id+'">AED ' + cart[i].price + '</div>';
+        htmlStr += '</div>';
+            
+        // ADDING PRODUCT DETAILS TO PRODIS
+        prodIDs.push({product_id: cart[i].id, quantity: 1});//Add to product array
+    }      
+
+        
+        htmlStr += "<input type='hidden' name='prodIDs' id='products' value='" + prodIDs + "'>";
+        htmlStr += ' <button class="buy-all" id="myBtn" onclick="checkout()" >Buy all</button>'
+        //   ADDING THE PRODUCTS TO BOX CONTAINER DIV
+        document.querySelector(".items").innerHTML = htmlStr;
+   }
+
+    var grandTotal = 0;
+    
+
+        // get the date
+        function getDate(){
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; 
+            var yyyy = today.getFullYear();
+            if(dd<10) 
+            {
+            dd='0'+dd;
+            }
+            if(mm<10) 
+            {
+            mm='0'+mm;
+            } 
+            today = dd+'/'+mm+'/'+yyyy;
+            return today;
+        }
+
+      let request = new XMLHttpRequest();
+
+    //   ========================================cart checkout==============================================
+
+        // function for checkout
+        function checkout(){
+            if(sessionStorage.getItem("loggedInUser")==null){
+                alert("You have to Login inorder to Checkout")
+            }
+            else{
+                writeOrder();
+            }
+        }
+
+
+        // function for writing order
+      function writeOrder(){
+            // DATE OF CHECKOUT
+            var dateToday = getDate();
+            // TOTAL AMOUNT OF CART ITEMS
+            var total = getTotal();
+            
+            
+            //Create event handler that specifies what should happen when server responds
+            request.onload = function(){
+                    //Check HTTP status code
+                    if(request.status === 200){
+                        //Get data from server
+                        var responseData = request.responseText;
+                        
+                        if(responseData === "ok"){
+                            //alert("Successful Registration");//Clear error messages
+                            alert("You order has been checked out. Thank you for shopping at WATCH SIGNAL");
+                            sessionStorage.removeItem("Cart");
+
+                        }
+                    }
+                    else{
+                        //   alert(responseData);
+                        alert("Error communicating with server");
+                    }
+                
+                };
+                    //Set up and send request to php
+                    request.open("POST", "php/cart.php");
+                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                
+                    //   send data to php
+                    let customer=sessionStorage.getItem("loggedInUser");
+                    let products=JSON.stringify(prodIDs);
+                    request.send("customer="+customer+" &products="+products+
+                    " &orderdate="+dateToday+" &total="+total);
+            
+      }
+
+
+    //   FUNCTION FOR GETTING THE TOTAL
+      function getTotal(){
+            let cart = getCart();
+                    for(let i = 0; i < cart.length; ++i) {
+                    var a =  document.getElementById(cart[i].id).value;
+                    var b = a * cart[i].price;
+                    grandTotal = grandTotal + b;
+                    }
+            return grandTotal;
+        }
+  </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+/* this css is for the the login and registration form */
+
+
+/* root for the main color */
+:root{
+    --space-cadet: #283044ff;
+    --air-superiority-blue: #78a1bbff;
+    --mint-cream: #ebf5eeff;
+    --silver-pink: #bfa89eff;
+    --cinereous: #8b786dff;
+}
+
+body{
+  width: 100%;
+  height: 100vh;
+  background-image: url("../images/login-cover.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+}
+
+/* container for the login and reg form */
+  /* login and registration form */
+.container{
+    max-width: 700px;
+    width: 100%;
+    background-color: var(--mint-cream);
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: auto;
+  }
+
+  .container .title{
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+  }
+ 
+  /* ========================================================================================== */
+  /*styling the form  */
+  .form {
+    padding: 30px 40px;	
+  }
+  
+  .form-control {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+  }
+  
+  .form-control label {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  
+  .form-control input,select {
+    border: 2px solid var(--cinereous);
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .form-control input:focus,select:focus {
+    outline: 0;
+    border-color: var(--air-superiority-blue);
+  }
+  
+  .form-control.success input,.input-box.success input {
+    border-color: #059e45;
+  }
+  
+  .form-control.error input, .input-box.success input {
+    border-color: #da1f0a;
+  }
+  
+  .form-control i,  .input-box i {
+    visibility: hidden;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+  }
+  
+  .form-control.success i.fa-check-circle, .input-box.success i.fa-check-circle {
+    color: #059e45;
+    visibility: visible;
+  }
+  
+  .form-control.error i.fa-exclamation-circle, .input-box.error i.fa-exclamation-circle {
+    color: #da1f0a;
+    visibility: visible;
+  }
+  
+  .form-control small, .input-box small {
+    color: #da1f0a;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+  }
+  
+  .form-control.error small, form-control.error small  {
+    visibility: visible;
+  }
+  
+  button {
+    background:linear-gradient(180deg,var(--space-cadet),var(--air-superiority-blue)) ;
+    border: 2px solid var(--space-cadet);
+    border-radius: 4px;
+    color: var(--mint-cream);
+    font-weight: 600;
+    display: block;
+    font-family: inherit;
+    font-size: 20px;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .form button:hover{
+    background: linear-gradient(270deg,var(--space-cadet),var(--silver-pink));
+  }
+
+  /* registration and login message below the forms */
+  .register-message, .login-message, .success-message{
+    margin: 30px;
+    margin-left: 25%;
+    text-align: center;
+    padding: 20px;
+    color:var(--silver-pink);
+    font-size: 25px;
+    background: var(--space-cadet);
+    width: 50%;
+    align-items: center;
+  }
+
+  .register-message a, .login-message a{
+    color: var(--mint-cream);
+    margin-left: 10px;
+    font-weight: 500;
+  }
+
+  .register-message a:hover, .login-message a:hover{
+    color: var(--air-superiority-blue);
+    font-weight: 700;
+  }
+
+  /* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  width: 50%;
+}
+
+.update-info{
+  float: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+  .prev-orders{
+    max-width: 600px;
+  }
+
+
+  @media (max-width: 1200px) {
+    .column{
+      float:none;
+      width: 100%;
+    }
+  }

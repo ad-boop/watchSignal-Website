@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel = "icon" type = "image/png" href = "images/logo.png">
+
+    <!-- style sheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/form.css">
+
+    <!-- online style sheets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/5f8b2c930b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <!-- logo -->
+        <h2 class="logo"><a href="home.html"><span>w</span>atch <span>s</span>ignal</a></h2>      
+        
+        <!-- nav-bar within the header -->
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a class="button" type="submit" href="search.html" id="search-button">
+                  <p style="font-size: 15px; background-color: #283044ff; color: #f2f2f2; border-radius: 10px; padding: 4%;">SEARCH</p>
+                </a></li>
+            </ul>
+        </nav>
+        <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+        
+        <!-- toggle button when screen is small -->
+        <i class="fas fa-bars" onclick="menutoggle()"></i>
+        <i class="fas fa-times" style="visibility: hidden;"></i>
+    </header>
+
+    <!--watch categories header -->
+    <div class="categories-header">
+        <ul id="MenuItems">
+            <li><a href="analog.html">analog</a></li>
+            <li><a href="digital.html">digital</a></li>
+            <li><a href="smart.html">smart</a></li>
+        </ul>
+    </div>
+    
+    <!-- login form -->
+    <section class="login-form">
+
+        <!-- LOGIN SUCCESS MESSAGE -->
+        <div class="success-message"></div>
+        <div class="container">
+            <h2 class="title">Login</h2>
+            
+            <!-- form -->
+                <!-- email -->
+                <div class="form-control">
+                    <label for="username">Email</label>
+                    <input type="email" name="email_id" placeholder="xxx@email.com" id="email"/>
+                </div>
+                
+                <!-- password -->
+                <div class="form-control">
+                    <label for="username">Password</label>
+                    <input type="password" name="password_input" placeholder="Password" id="password"/>
+                </div>
+
+                <!-- BUTTONN FOR SUBMITING LOGIN INFO -->
+                <div class="button"><button id="loginButton" onclick="login()">LOGIN</button></div>
+        </div>
+
+        <!-- message for if user wants to register-->
+        <div class="register-message">
+            <p>Don't have a account? <a href="registration.html">Register</a></p>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>watch signal</h3>
+            <p>For the love of watch, timeless</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+
+            <!-- to go to cms page -->
+            <div class="admin-login">
+                <a href="../cms/home.html">Admin Login</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>copyright &copy;2020 watch signal. designed by <span>group-5</span></p>
+        </div>
+    </footer>
+
+   
+    <!-- JS FOR TOGGLE MENU -->
+    <script src="js/main.js"> </script>
+
+    <!-- JS FOR LOGIN FOR SUBMISSION -->
+    <script>
+       
+        // form validation for login
+        const form = document.getElementById('form');
+        const email = document.getElementById('email');
+        const password = document.getElementById("password");      
+    
+        let request = new XMLHttpRequest();
+      
+        //Check IF THE USER IS login when page loads
+        window.onload = checkLogin;
+      
+        //Checking if the user is logged in
+        function checkLogin(){
+            //Create event handler that specifies what should happen when server responds
+            request.onload = function(){
+
+                //   if yes 
+                // DISPLAY THE LOGOUT BUTTON
+                if(request.responseText === "ok"){
+                        document.querySelector(".container").innerHTML="";
+                        document.querySelector(".register-message").innerHTML="";
+
+                        // adds in inner html
+                        document.querySelector(".success-message").innerHTML="<p>"+sessionStorage.getItem("loggedInUser")+" is logged in</p>"
+                        
+                        document.querySelector(".container").innerHTML="<h2 class='title'>Logout</h2> <button onclick='logout()'>Logout</button>";
+                        
+                }
+                else{
+                    console.log(request.responseText);
+                }
+            };
+            //Set up and get data from php
+            request.open("GET", "php/loginCheck.php");
+            request.send();
+        }
+      
+
+
+    //   FUNCTION FOR LOGIN
+      //Attempts to log in user to server
+      function login(){
+        //  on click the function will take place
+          request.onload = function(){
+
+            
+              //Check the status code
+            //   if no error
+              if(request.status === 200){
+                  //Get data from php server
+                  var responseData = request.responseText;
+
+                  //check the data
+                //   SUCCESSFUL SUBMISSION
+                  if(responseData === "ok"){
+                    
+                    // ALERT FOR SUCCESS
+                    alert("Login Successful") 
+
+                    // save user in the session storage
+                    sessionStorage.setItem("loggedInUser",document.getElementById("email").value.trim())
+                    // display message
+                    document.querySelector(".success-message").innerHTML="<p>"+sessionStorage.getItem("loggedInUser")+" is logged in</p>"
+                    
+                  }
+                //   ERROR
+                else{
+                    //  SEND ERROR ALERT
+                    alert(request.responseText); 
+                }  
+              }
+            //   ERROR WITH COMMUNICATION WITH THE SERVER
+              else
+                  alert("Error communicating with server");
+          };
+
+            //Extract login data FROM THE INPUT FIEDLS
+            let usrEmail = document.getElementById("email").value.trim();
+            let usrPassword = document.getElementById("password").value.trim();
+          
+            //Set up and send request TO PHP
+            request.open("POST", "php/login.php");
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            //   SEND FIELD DATA TO PHP
+            request.send("email=" + usrEmail + "&password=" + usrPassword);
+      }
+      
+
+        //   FUNCTION FOR LOGOUT
+      //Logs the user out.
+      function logout(){
+            //when logout button is clicked checks the login
+            request.onload = function(){
+                checkLogin();
+            };
+
+            //   gives out the alert of successful signout
+            alert("You have signed out");
+            //   redirects to home page
+            window.location.href="home.html";
+            //Set up and send request
+            request.open("GET", "php/logout.php");
+            request.send();
+
+            //   clears session storage
+            sessionStorage.clear();
+        }
+    </script>
+</body>
+</html>

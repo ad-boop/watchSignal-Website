@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Orders</title>
+    <link rel="stylesheet" href="css/cmsStyle.css">
+</head>
+<body>
+    
+<h1>Watch Signal</h1>
+<!-- nabvar -->
+<div id="navbar"> 
+    <ul> 
+      <li><a href="viewProduct.html">View Products</a></li> 
+      <li><a href="addProduct.html">Add Product</a></li> 
+      <li><a href="editProduct.html">Edit Product</a></li>
+      <li><a href="deleteProduct.html">Delete Product</a></li>
+      <li><a href="viewOrders.html">View Orders</a></li>
+      <li><a href="deleteOrders.html">Delete Orders</a></li>
+      <li><a href="staffLogout.html">Logout</a></li>
+    </ul> 
+</div> 
+
+
+<!-- container for deleting orders -->
+    <div class="form-container">
+        <h2>Delete Orders</h2>        
+
+        <label for="orderID">Order ID</label>
+        <input type="text" id="orderID">
+            
+        <!-- button for deletion -->
+        <button onclick="deleteOrder()">DELETE ORDER</button>
+    </div>
+
+    <script>
+
+        // function for deleting Orders
+        function deleteOrder(){
+
+            let request = new XMLHttpRequest();
+
+            //Create event handler that specifies what should happen when server responds
+            request.onload = function(){
+                    
+                    //Check HTTP status code
+                    if(request.status === 200){
+                        //Get data from server
+                        var responseData = request.responseText;
+
+                        //Add data to page
+                        // if orders are successfully deleted
+                        if(responseData === "ok"){
+                            alert("Order Deleted Successfully")
+                        }
+                        // error in deletion
+                        else
+                            alert("Enter proper order id");
+                    }
+                    // error in connecting to server
+                    else
+                        document.getElementById("ErrorMessages").innerHTML = "Error communicating with server";
+                };
+
+                //Extract order id data
+                let orderID = document.getElementById("orderID").value.trim();
+                
+                //Set up and send request
+                request.open("POST", "deleteOrders.php");
+                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                request.send("orderID=" + orderID);
+        }
+    </script>
+    
+</body>
+</html>

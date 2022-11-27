@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel = "icon" type = "image/png" href = "images/logo.png">
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- online cdn or styleshteets -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/5f8b2c930b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+</head>
+<body>
+    <!-- header for the page -->
+    <header>
+        <!-- logo -->
+        <h2 class="logo"><a href="home.html"><span>w</span>atch <span>s</span>ignal</a></h2>
+        
+        <!-- search bar right align -->
+        
+
+        <!-- navbar inside the header -->
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a class="button" type="submit" href="search.html" id="search-button">
+                    <p style="font-size: 15px; background-color: #283044ff; color: #f2f2f2; border-radius: 10px; padding: 4%;">SEARCH</p>
+                  </a></li>
+            </ul>
+                <!-- button to go to search page -->
+                
+            
+        </nav>
+
+        <!-- shooping cart -->
+        <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+
+        <!-- icons for menu toggle when screen is small -->
+        <i class="fas fa-bars" onclick="menutoggle()"></i>
+    </header>
+
+    <!-- watches categories header -->
+    <div class="categories-header">
+        <ul id="MenuItems">
+            <li><a href="analog.html">Analog</a></li>
+            <li><a href="digital.html">Digital</a></li>
+            <li><a href="smart.html">Smart</a></li>
+        </ul>
+    </div>
+    
+    <!-- section for banner showcasing the video background -->
+    <section id="banner">
+
+        <!-- video source -->
+        <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0" src="video/background.mp4">
+               Sorry, your browser does not support HTML5 video.
+         </video>
+         
+         </p>
+
+         <!-- overlay around the video background -->
+         <div class="overlay"></div>
+
+         <!-- text on top of the background -->
+        <div class="text">
+            <h2>For the</h2>
+            <h3>Love of Watches, timeless</h3>
+            <p>Deals and Watches made especially for you.
+                Grab your Best and Shop for less.
+                Explore more at Watch Signal.
+                <br><b style="font-size: 25px;">Check out our Best Smart Watches</b>
+            </p>
+
+            <!-- a button for switching to the smart watches page -->
+            <a href="smart.html">Explore More</a>
+        </div>
+    </section>
+
+    <!-- content containing featured products -->
+    <div class="content">
+        <!-- Featured Products -->
+        <div class="recommended-products">
+            <h2 class="title">Recommended Products</h2>
+
+            <!-- box container which contain product boxes -->
+            <div class="box-container" ></div>
+        </div>
+             
+        
+        <!-- OFFERS -->
+        <div class="offer">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-2">
+
+                        <!-- slide show for the watches images display -->
+                        <div class="slideshow-container">
+
+                            <!-- picture 1 -->
+                            <div class="mySlides fade">
+                            <img src="images/banner3.jpeg" style="width:100%">
+                            </div>
+                            
+                            <!-- picture 2 -->
+                            <div class="mySlides fade">
+                            <img src="images/banner2.jpeg"style="width:100%">
+                            </div>
+                            
+                            <!-- picture 3 -->
+                            <div class="mySlides fade">
+                            <img src="images/banner1.jpeg" style="width:100%">
+
+                            </div>
+                            <div style="text-align:center">
+                            <span class="dot"></span> 
+                            <span class="dot"></span> 
+                            <span class="dot"></span> 
+                            </div>
+                        </div>
+                    </div>
+                    <!-- text container on the offers -->
+                    <div class="col-2">
+                        <p>Exclusively found on Time Signal</p>
+                        <h1>Watches</h1>
+                        <small>Perfection to seconds a month.
+                            You'll find super awesome deals and offers where you can purchases watches which fits your style and taste.
+                        </small>
+                        <h4><br>Check out our best Analog Watches</h4>
+                        <br>
+                        <!-- button for switching to analog watches -->
+                        <a href="analog.html" class="btn">Shop Now <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- brand container -->
+    <section class="brand-container">
+        <h2 class="title">Brands in Our Store</h2>
+
+        <!-- swiping functionality for the brands -->
+        <div class="swiper-container brand-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="images/brands/001_Rotary.svg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/brands/__AX_exchange.svg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/brands/__CASIO.svg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/brands/__Citizen.svg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/brands/__Guess.svg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/brands/__MK.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer section -->
+    <footer>
+        <div class="footer-content">
+            <h3>watch signal</h3>
+            <p>For the love of watch, timeless</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+            <!-- admin login -->
+            <div class="admin-login">
+                <a href="../cms/home.html">Admin Login</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy;2020 watch signal. designed by <span>group-5</span></p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    
+    <!-- JS FOR TOGGLE MENU -->
+    <script src="js/main.js"></script>
+    
+
+    <!-- script for product popup display -->
+    <script type="module">
+        "use strict";
+
+        //Import recommender class
+        import {Recommendation} from './js/recommendation.js';
+
+        //Create recommender object - it loads its state from local storage
+        let recommender = new Recommendation();
+        // script for ajax
+        let request = new XMLHttpRequest();
+       
+        //    ============================================ RECOMMENDED PRODUCTS =====================================
+        window.onload = getRecommended;
+        function getRecommended(){
+            //Create event handler that specifies what should happen when server responds
+            request.onload = function(){
+                    //Check HTTP status code
+                    if(request.status === 200){
+                        //Add the search keyword to the recommender
+                        
+                        recommender.getPopularSearch();
+                        console.log(request.responseText);
+
+                        // CALLING THE FUNCTION
+                        displayProductBox(request.responseText);
+                    }
+                    else
+                        console.log("Error");
+                };
+
+                // //Extract recommended word data
+                let popularProduct= recommender.getPopularSearch();
+                console.log(popularProduct);
+                
+                //Set up and send request
+                request.open("POST", "php/home_main.php");
+                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                request.send("search_word="+popularProduct);
+
+        }
+ 
+        function displayProductBox(jsonProducts){
+           
+           let prodArray=JSON.parse(jsonProducts);
+            console.log(prodArray);
+           
+           let htmlStr = '';
+           for(let i=0; i<prodArray.length; ++i){
+             htmlStr +=  '<div class="product" >';
+             htmlStr +=  '<div class="product-card">';
+             htmlStr +=  '<h2 class="name">'+prodArray[i].product_name+'</h2>';
+             htmlStr +=  '<span class="price">'+prodArray[i].price+'</span>';
+            //   htmlStr +=  '<a class="popup-btn">View Details</a>' Popup box is not working
+            htmlStr += '<a onclick=\'addToCart("'+prodArray[i]._id.$oid+'","'+prodArray[i].product_name+'","'+prodArray[i].gender+'","'+prodArray[i].image+'","'+prodArray[i].price+'")\' class="addtocart" >Add to Cart</a>'; //class="add-cart-btn"
+             htmlStr +=  '<img src="'+prodArray[i].image+'" class="product-img" alt="Image Not Found" class="popup-btn">';
+             htmlStr +=  '</div>';
+             htmlStr +=  '</div>';
+          }
+
+            //   displaying the products in the div
+           document.querySelector(".recommended-products .box-container").innerHTML = htmlStr;
+        }
+   </script>
+
+
+        <!--js for adding products to cart  -->
+    <script src="js/cart.js"></script>
+</body>
+</html>

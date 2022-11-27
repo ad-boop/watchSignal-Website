@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Products</title>
+    <link rel="stylesheet" href="css/cmsStyle.css">
+</head>
+<body>
+    <h1>Watch Signal</h1>
+
+    <!-- navbar -->
+    <div id="navbar"> 
+        <ul> 
+          <li><a href="viewProduct.html">View Products</a></li> 
+          <li><a href="addProduct.html">Add Product</a></li> 
+          <li><a href="editProduct.html">Edit Product</a></li>
+          <li><a href="deleteProduct.html">Delete Product</a></li>
+          <li><a href="viewOrders.html">View Orders</a></li>
+          <li><a href="deleteOrders.html">Delete Orders</a></li>
+          <li><a href="staffLogout.html">Logout</a></li>
+        </ul> 
+    </div> 
+
+    
+    <!-- table for viewing products -->
+    <div class="table-container">
+        <h2>View Products</h2>
+        <table>
+            <!-- THE TABLE HEAD -->
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Watch Brand Name</th>
+                    <th>Watch Type</th>
+                    <th>Color</th>
+                    <th>Dial Size</th>
+                    <th>Case Material</th>
+                    <th>Band</th>
+                    <th>Image URL</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="table_body">
+                        
+            </tbody>
+
+        </table>
+    </div>
+
+    <!-- TABLE CONTENT -->
+    <script>
+         // script for ajax
+         window.onload=loadAllProducts;
+
+        //  LOAD ALL THE PRODUCTS
+         function loadAllProducts(){
+            let request = new XMLHttpRequest();
+
+            //Create event handler that specifies what should happen when server responds
+            request.onload = () => {
+               //Check HTTP status code
+               if(request.status === 200){
+                     //Add data from server to page
+                     displayAllProducts(request.responseText);
+               }
+               else
+                     alert("Error communicating with server: " + request.status);
+            };
+
+            //Set up request and send it
+            request.open("GET", "viewProduct.php");
+            request.send();
+         }
+
+
+        //  FUNCTION FOR DISPLAYING ALL THE PRODUCTS FROM THE SERVER PHP
+         function displayAllProducts(jsonProducts){
+           
+           let prodArray=JSON.parse(jsonProducts);
+
+           let htmlStr="";
+        //    LOOPING IN TABLE FORM
+           for(let i=0; i<prodArray.length; ++i){
+            htmlStr += '<tr>';
+            htmlStr += '<td>'+prodArray[i]._id.$oid+'</td>';
+            htmlStr += '<td>'+prodArray[i].product_name+'</td>';
+            htmlStr += '<td>'+prodArray[i].product_type+'</td>';
+            htmlStr += '<td>'+prodArray[i].color+'</td>';
+            htmlStr += '<td>'+prodArray[i].case_size+'</td>';
+            htmlStr += '<td>'+prodArray[i].case_material+'</td>';
+            htmlStr += '<td>'+prodArray[i].band+'</td>';
+            htmlStr += '<td>'+prodArray[i].image+'</td>';
+            htmlStr += '<td>'+prodArray[i].quantity+'</td>';
+            htmlStr += '<td>'+prodArray[i].price+'</td>';
+            htmlStr += '</tr>';
+           }
+
+            //    ADDING TO THE TABLE BODY
+           document.querySelector("#table_body").innerHTML = htmlStr;
+        }
+    </script>
+
+
+    
+    
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Staff Login</title>
+    <link rel="stylesheet" href="css/cmsStyle.css" />
+  </head>
+  <body>
+    <h1>Watch Signal</h1>
+    <!-- nabar -->
+    <div id="navbar"></div>
+
+    <!-- container for staff login -->
+    <div class="login-form" id="login-form">
+     
+        <div class="box" id="login-box">
+          <h1>Admin Login</h1>
+
+          <input type="email" class="email" id="email" placeholder="staff email"/>
+
+          <input type="password"  class="password" id="password" placeholder="password"/>
+
+          <button type="submit"  onclick="staffLogin()">Login</button>
+        </div>
+        <!-- End Box -->
+      
+    </div>
+
+
+    <!-- footer -->
+    <footer>
+      <p>Go back to the Website</p>
+      <a href="../eccomerce-website/home.html">WATCH SIGNAL WEBSITE</a>
+    </footer>
+
+    <script>
+     
+      
+      let loginStr = document.getElementById("login-form").innerHTML;
+
+        //   http request
+      let request = new XMLHttpRequest();
+      
+      //Check login when page loads
+      window.onload = checkStaffLogin;
+      
+      //Checks whether user is logged in.
+      function checkStaffLogin(){
+          //Create event handler that specifies what should happen when server responds
+          request.onload = function(){
+              if(request.responseText === "ok"){
+                 console.log(request.responseText)
+                  
+              }
+              else{
+                  console.log(request.responseText);
+                  document.getElementById("login-form").innerHTML  = loginStr;
+              }
+          };
+          //Set up and send request
+          request.open("GET", "loginCheck.php");
+          request.send();
+      }
+      
+
+        //Attempts to log in user to server
+        function staffLogin(){
+          //Create event handler that specifies what should happen when server responds
+          request.onload = function(){
+
+            
+              //Check HTTP status code
+              if(request.status === 200){
+                  //Get data from server
+                  var responseData = request.responseText;
+
+                  //Add data to page
+                  if(responseData === "ok"){
+                        // if login is successful
+                        alert("Login Successful")
+                        window.location.href="addProduct.html";                      
+                  }
+                  else
+                        // if login error
+                      alert(request.responseText);
+                    
+                      
+              }
+              else
+                // if server error
+                  alert("Error communicating with server");
+            };
+
+          //Extract login data from the form
+          let usrEmail = document.getElementById("email").value.trim();
+          let usrPassword = document.getElementById("password").value.trim();
+          
+          //Set up and send request for checking if user exists in database
+          request.open("POST", "staffLogin.php");
+          request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          request.send("email=" + usrEmail + "&password=" + usrPassword);
+        }
+      
+      
+      
+  </script>
+  </body>
+</html>

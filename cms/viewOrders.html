@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Orders</title>
+    <link rel="stylesheet" href="css/cmsStyle.css" />
+  </head>
+  <body>
+    <h1>Watch Signal</h1>
+    <!-- navbar -->
+    <div id="navbar">
+      <ul>
+        <li><a href="viewProduct.html">View Products</a></li>
+        <li><a href="addProduct.html">Add Product</a></li>
+        <li><a href="editProduct.html">Edit Product</a></li>
+        <li><a href="deleteProduct.html">Delete Product</a></li>
+        <li><a href="viewOrders.html">View Orders</a></li>
+        <li><a href="deleteOrders.html">Delete Orders</a></li>
+        <li><a href="staffLogout.html">Logout</a></li>
+      </ul>
+    </div>
+    <!-- container for viewing orders -->
+    <div class="table-container">
+      <h2>View Orders</h2>
+      <div id="orders"></div>
+    </div>
+
+    <script>
+      // script for ajax
+      window.onload = loadAllOrders;
+      let request = new XMLHttpRequest();
+      // LOADING ALL THE ORDERS
+      function loadAllOrders() {
+    
+        //Create event handler that specifies what should happen when server responds
+        request.onload = () => {
+          
+
+          //Check HTTP status code
+          if (request.status === 200) {
+
+            //Add data from server to page
+            displayAllOrders(request.responseText);
+          } else alert("Error communicating with server: " + request.status);
+        };
+
+        //Set up request and send it
+        request.open("GET", "viewOrders.php");
+        request.send();
+      }
+
+      // FUNCTION FOR DISPLAYING ALL THE ORDERS FORM SERVER PHP
+      function displayAllOrders(jsonProducts) {
+        let orderArray = JSON.parse(jsonProducts);
+
+        let htmlStr = "";
+        var products=[];
+
+        // LOOPING ALL THE ORDERS 
+        for (let i = 0; i < orderArray.length; ++i) {
+
+          htmlStr += "<div id='" + orderArray[i]._id.$oid + "' class='order'>";
+          htmlStr += "<h2><span>ORDER ID:</span> " + orderArray[i]._id.$oid + "</h2>";
+          htmlStr += "<p> <span>CUSTOMER ID:</span> " + orderArray[i].customer_email + "</p>";
+          htmlStr += "<p> <span>ORDER DATE:</span> " + orderArray[i].order_date + "</p>";
+          htmlStr += "<p> <span>TOTAL AMOUNT:</span> " + orderArray[i].total_amount + "</p>";       
+          htmlStr += "</div>";
+        }
+
+        // ADDING TO THE ORDERS DIV
+        document.querySelector("#orders").innerHTML = htmlStr;
+      }
+      </script>
+  </body>
+</html>

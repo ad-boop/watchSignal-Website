@@ -1,0 +1,233 @@
+#navbar ul { 
+	margin: 0; 
+	padding: 20px; 
+	list-style-type: none; 
+	text-align: center; 
+	background-color: #000; 
+	} 
+ 
+#navbar ul li {  
+	display: inline; 
+	} 
+ 
+#navbar ul li a { 
+	text-decoration: none; 
+	padding: .7em 1em; 
+  margin: 30px;
+	color: #fff; 
+	background-color: #000; 
+
+	} 
+ 
+#navbar ul li a:hover { 
+	color: #000; 
+	background-color: #fff; 
+	} 
+ 
+
+h1{
+    text-align: center;
+    font-weight: bold;
+}
+
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0 auto 0 auto;  
+    width:100%; 
+    text-align:center;
+    margin: 20px 0px 20px 0px;   
+  }
+  
+  p{
+    font-size:12px;
+    text-decoration: none;
+    color:#ffffff;
+  }
+  
+  h1{
+    font-size:2em;
+    color:#525252;
+  }
+
+  h2{
+    padding: 20px;
+  }
+  
+  .login-form{
+	display:flex;
+	justify-content: center;
+    width:400px;
+	margin: auto;
+    position: relative;
+}
+  .box{
+    background:#AAAAAA;
+    width:850px;
+    height: 300px;
+    border-radius:6px;
+    margin: 0 auto 0 auto;
+    padding:30%;
+    border: #515457 4px solid; 
+    align-items: center;
+  }
+  
+  .email, .password{
+    background:#ecf0f1;
+    border: #ccc 1px solid;
+    border-bottom: #ccc 2px solid;
+    padding: 8px;
+    width:500px;
+    height: 30px;
+    color:#AAAAAA;
+    margin-top:30px;
+    font-size:1em;
+    border-radius:4px;
+  }
+  
+  
+  
+  
+  label{
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-top: 20px;
+    margin-right:15px;
+    margin-left: 100px;
+  }
+  input[type=text],input[type=number], select {
+    display: block;
+    width: 50%; /* Full width */
+    padding: 12px; /* Some padding */ 
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 20px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    margin-left: 290px;
+  }
+  
+  /* Style the submit button with a specific background color etc */
+  input[type=submit],button {
+    margin-top: 10%;
+    background-color: #525f5a;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 89%;
+  }
+  
+  /* When moving the mouse over the submit button, add a darker green color */
+  input[type=submit]:hover {
+    background-color: #000000;
+  }
+  
+  /* Add a background color and some padding around the form */
+  .form-container{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 50%;
+    align-items: center;
+    position: relative;
+    margin: auto;
+    margin-top: 10%;
+  }
+
+
+  .table-container{
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    
+    /* top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%); */
+  }
+
+  table, th, td {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    border: 3px solid black;
+   
+}
+th{
+  border: 3px solid black;
+  background: #AAAAAA;
+}
+th, td {
+  
+  padding: 25px;
+}
+
+tbody{
+  background: #ebdbdb;
+  color: #000;
+}
+
+.logout{
+  width: 30%;
+  height: 30%;
+}
+
+.order{
+color: #ecf0f1;
+background: #626463;
+width: 60%;
+margin: auto;
+padding: 1%;
+margin-top: 3%;
+}
+
+p{
+  font-size: 20px;
+  text-align: left;
+  margin-left: 10%;
+}
+
+span{
+  color:rgb(230, 152, 96);
+  font-weight: bold;
+}
+
+.logout-box{
+  position: relative;
+  margin: auto;
+  width: 70%;
+  background:#AAAAAA;
+  color: #000;
+  padding: 4%;
+  align-items: center;
+  text-align: center;
+}
+
+.logout{
+  margin: auto;
+}
+
+
+footer{
+  margin-top: 3%;
+  position: relative;
+  background: #515457;
+  padding: 4%;
+  text-align: center;
+}
+
+
+footer p{
+  text-align: center;
+  font-size: 35px;
+}
+
+footer a{
+  margin-top: 2%;
+  color: #AAAAAA;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bolder;
+}

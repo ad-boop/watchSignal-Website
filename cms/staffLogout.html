@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Products</title>
+    <link rel="stylesheet" href="css/cmsStyle.css">
+</head>
+<body>
+    <h1>Watch Signal</h1>
+
+    <!-- navbar -->
+    <div id="navbar"> 
+        <ul> 
+          <li><a href="viewProduct.html">View Products</a></li> 
+          <li><a href="addProduct.html">Add Product</a></li> 
+          <li><a href="editProduct.html">Edit Product</a></li>
+          <li><a href="deleteProduct.html">Delete Product</a></li>
+          <li><a href="viewOrders.html">View Orders</a></li>
+          <li><a href="deleteOrders.html">Delete Orders</a></li>
+          <li><a href="staffLogout.html">Logout</a></li>
+        </ul> 
+    </div> 
+
+    
+    <!-- LOGOUT BUTTON -->
+    <div class="logout-box">
+        <p>You can now Logout from the Central Management System</p>
+        <div class="logout" id="logout">
+            <button onclick='Stafflogout()'>LOGOUT</button>
+        </div> 
+        
+    </div>
+
+    
+
+    <script>
+        let request = new XMLHttpRequest();
+            
+            //Check login when page loads
+            window.onload = checkStaffLogin;
+
+            //Checks whether user is logged in.
+            function checkStaffLogin(){
+                //Create event handler that specifies what should happen when server respond
+                request.onload = function(){
+                            if(request.responseText === "ok"){
+                                console.log("Logged in");
+                            }
+                            else{
+                                console.log(request.responseText);
+                            }
+                        };
+                //Set up and send request
+                request.open("GET", "loginCheck.php");
+                request.send();
+            }
+
+            //Logs the user out.
+            function Stafflogout(){
+                //Create event handler that specifies what should happen when server responds
+                console.log("Logout")
+                request.onload = function(){
+                    // if logged in
+                    checkStaffLogin();
+                };
+                //Set up and send request for logout
+                request.open("GET", "logout.php");
+                request.send();
+
+                // after logout goes back to the login page
+                window.location.href="home.html";
+            }
+    </script>
+
+    
+    
+</body>
+</html>

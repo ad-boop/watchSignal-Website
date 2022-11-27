@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <title>Smart Watches</title>
+      <link rel = "icon" type = "image/png" href = "images/logo.png">
+      <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="css/style.css">
+      
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://kit.fontawesome.com/5f8b2c930b.js" crossorigin="anonymous"></script>
+   <body>
+
+      <!-- header -->
+      <header>
+         <h2 class="logo"><a href="home.html"><span>w</span>atch <span>s</span>ignal</a></h2>
+
+
+         <!-- navbar -->
+         <nav>
+            <ul id="MenuItems">
+               <li><a href="home.html">Home</a></li>
+               <li><a href="login.html">Login</a></li>
+               <li><a href="account.html">Account</a></li>
+               <li><a class="button" type="submit" href="search.html" id="search-button">
+                  <p style="font-size: 15px; background-color: #283044ff; color: #f2f2f2; border-radius: 10px; padding: 4%;">SEARCH</p>
+                </a></li>
+            </ul>
+         </nav>
+
+         <!-- cart icon -->
+         <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+         <!-- menu toggle -->
+         <i class="fas fa-bars" onclick="menutoggle()"></i>
+      </header>
+
+
+      <!-- categories header -->
+      <div class="categories-header">
+         <ul id="MenuItems">
+            <li><a href="analog.html">Analog</a></li>
+            <li><a href="digital.html">Digital</a></li>
+            <li><a href="smart.html">Smart</a></li>
+         </ul>
+      </div>
+
+      <!-- banner for smart watches -->
+      <div id="banner-product" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/smartwatch_banner.jpg);"></div>
+      
+      <!-- smart products container -->
+      <div class="smart-products">
+         <h2 class="title">Smart Watches</h2>
+
+         <!-- sortation of products -->
+         <div class="sort">
+            <select id="sort" onchange="sort(this.options[this.selectedIndex].value)">
+               <option>Sort</option>
+               <option value="-1">Sort by High Price</option>
+               <option value="1">Sort by Low Price</option>
+            </select>
+            <input type="hidden" id="sort_value">
+        </div>
+        
+         <!-- box container which contain product boxes for smart watches-->
+         <div class="box-container"></div>
+      </div>
+
+      <!-- footer -->
+      <footer>
+         <div class="footer-content">
+            <h3>watch signal</h3>
+            <p>For the love of watch, timeless</p>
+            <ul class="socials">
+               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+               <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+               <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+               <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+            <div class="admin-login"><a href="../cms/home.html">Admin Login</a></div>
+         </div>
+         <div class="footer-bottom">
+            <p>copyright &copy;2020 watch signal. designed by <span>group-5</span></p>
+         </div>
+      </footer>
+
+      <!-- JS FOR TOGGLE -->
+      <script src="js/main.js"></script>
+       
+      <!-- ============================================================================================================== -->
+      <!-- JS FOR DISPLAYING PRODUCT BOXES SMART WATCHES -->
+      <script>
+			// script for ajax
+			window.onload = loadProductBox;
+
+			function loadProductBox() {
+				let request = new XMLHttpRequest();
+				//Create event handler that specifies what should happen when server responds
+				request.onload = () => {
+					//Check HTTP status code
+					if(request.status === 200) {
+						//Add data from server to page
+						displayProductBox(request.responseText);
+					} else alert("Error communicating with server: " + request.status);
+				};
+				//Set up request and send it
+				request.open("GET", "php/smart.php");
+				request.send();
+			}
+
+         // ====================================SORT=============================================================
+			function sort(option) {
+				let request = new XMLHttpRequest();
+				//Create event handler that specifies what should happen when server responds
+				request.onload = () => {
+					//Check HTTP status code
+					if(request.status === 200) {
+						//Add data from server to page
+						console.log(request.responseText)
+						displayProductBox(request.responseText);
+					} else alert("Error communicating with server: " + request.status);
+				};
+
+				let sort_value = parseInt(option, 10);
+				console.log(sort_value);
+				//Set up request and send it
+				request.open("POST", "php/smart.php");
+				request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				request.send("sort_option=" + sort_value);
+			}
+
+
+         // FUNCTION FOR DISPLAUYING PRODUCT DIVS
+			function displayProductBox(jsonProducts) {
+				let prodArray = JSON.parse(jsonProducts);
+				let htmlStr = "";
+				for(let i = 0; i < prodArray.length; ++i) {
+					htmlStr += '<div class="product" >';
+					htmlStr += '<div class="product-card">';
+					htmlStr += '<h2 class="name">' + prodArray[i].product_name + '</h2>';
+					htmlStr += '<span class="price">' + prodArray[i].price + '</span>';
+					//   htmlStr +=  '<a class="popup-btn">View Details</a>';
+					htmlStr += '<a onclick=\'addToCart("'+prodArray[i]._id.$oid+'","'+prodArray[i].product_name+'","'+prodArray[i].gender+'","'+prodArray[i].image+'","'+prodArray[i].price+'")\' class="addtocart" >Add to Cart</a>'; //class="add-cart-btn"
+					htmlStr += '<img src="' + prodArray[i].image + '" class="product-img" alt="Image Not Found" class="popup-btn">';
+					htmlStr += '</div>';
+					htmlStr += '</div>';
+				}
+				//   ADDING THE PRODUCTS TO BOX CONTAINER DIV
+				document.querySelector(".box-container").innerHTML = htmlStr;
+			}
+			</script>
+         <!-- =======================================================JS ENDS======================================================= -->
+			
+            
+         <!-- JS FOR ADDING PRODUCTS TO CART -->
+		<script src="js/cart.js"></script>
+
+       
+   </body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Products</title>
+    <link rel="stylesheet" href="css/cmsStyle.css">
+</head>
+<body>
+    
+<h1>Watch Signal</h1>
+
+<!-- navbar -->
+<div id="navbar"> 
+    <ul> 
+      <li><a href="viewProduct.html">View Products</a></li> 
+      <li><a href="addProduct.html">Add Product</a></li> 
+      <li><a href="editProduct.html">Edit Product</a></li>
+      <li><a href="deleteProduct.html">Delete Product</a></li>
+      <li><a href="viewOrders.html">View Orders</a></li>
+      <li><a href="deleteOrders.html">Delete Orders</a></li>
+      <li><a href="staffLogout.html">Logout</a></li>
+    </ul> 
+</div> 
+
+
+<!-- container for filling details for the new product -->
+    <div class="form-container">
+        <h2>Add New Product</h2>    
+        
+            <!-- brand name -->
+            <label for="brandName">Watch Brand Name</label>
+            <input type="text" id="brandName" required>
+
+            <!-- gender of the product -->
+            <label for="gender">Gender</label>
+            <select id="gender" required>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+             </select>
+        
+            <!-- watch type  -->
+            <label for="watchType">Watch Type</label>
+            <select id="watchType" required>
+                <option value="analog">Analog</option>
+                <option value="digital">Digital</option>
+                <option value="smart">Smart</option>
+             </select>
+
+
+             <!-- color of the watch -->
+            <label for="watchColor">Watch Color</label>
+            <select id="watchColor" required>
+                <option value="Red">Red</option>
+                <option value="Black">Black</option>
+                <option value="Yellow">Yellow</option>
+                <option value="Green">Green</option>
+                <option value="Blue">Blue</option>
+                <option value="Orange">Orange</option>
+                <option value="Brown">Brown</option>
+                <option value="Violet">Violet</option>
+                <option value="Pink">Pink</option>
+                <option value="Yellow">Yellow</option>
+                <option value="White">White</option>
+                <option value="Maroon">Maroon</option>
+                <option value="Gray">Gray</option>
+                <option value="Silver">Silver</option>
+                <option value="Gold">Gold</option>
+             </select>
+
+             <!-- watch size -->
+            <label for="watchSize">Watch Dial Size</label>
+            <select id="watchSize" required>
+                <option value="30mm">20mm</option>
+                <option value="30mm">21mm</option>
+                <option value="30mm">22mm</option>
+                <option value="30mm">23mm</option>
+                <option value="30mm">24mm</option>
+                <option value="30mm">25mm</option>
+                <option value="30mm">26mm</option>
+                <option value="30mm">27mm</option>
+                <option value="30mm">28mm</option>
+                <option value="30mm">29mm</option>
+                <option value="30mm">30mm</option>
+                <option value="31mm">31mm</option>
+                <option value="32mm">32mm</option>
+                <option value="33mm">33mm</option>
+                <option value="34mm">34mm</option>
+                <option value="35mm">35mm</option>
+                <option value="36mm">36mm</option>
+                <option value="37mm">37mm</option>
+                <option value="38mm">38mm</option>
+                <option value="39mm">39mm</option>
+                <option value="40mm">40mm</option>
+                <option value="41mm">41mm</option>
+                <option value="42mm">42mm</option>
+                <option value="43mm">43mm</option>
+                <option value="44mm">44mm</option>
+                <option value="45mm">45mm</option>
+                <option value="46mm">46mm</option>
+                <option value="47mm">47mm</option>
+                <option value="48mm">48mm</option>
+                <option value="49mm">49mm</option>
+                <option value="50mm">50mm</option>
+                <option value="51mm">51mm</option>
+                <option value="52mm">52mm</option>
+                <option value="53mm">53mm</option>
+                <option value="54mm">54mm</option>
+                <option value="55mm">55mm</option>
+                <option value="56mm">56mm</option>
+                <option value="57mm">57mm</option>
+                <option value="58mm">58mm</option>
+                <option value="59mm">59mm</option>
+                <option value="60mm">60mm</option>
+             </select>
+
+            <!-- watch price -->
+            <label for="watchPrice">Watch Price</label>
+            <input type="text" id="watchPrice" required>
+
+            <!-- case material of the watch -->
+            <label for="caseMaterial">Case Material</label>
+            <input type="text" id="caseMaterial"  required>
+
+            <!-- band type of the watch -->
+            <label for="band">Band</label>
+            <input type="text" id="band" required>
+
+            <!-- stock of the watch -->
+            <label for="quantity">Quantity</label>
+            <input type="number" min="1" max="70" id="quantity" required>
+
+            <!-- description of the watch -->
+            <label for="description">Description</label>
+            <input type="text" id="description" required>
+
+            <!-- image url for display -->
+            <label for="image">Image URL</label>
+            <input type="text" id="image" required>
+        
+            <!-- submit button for submiiting the details -->
+            <button id="add-product-btn">ADD PRODUCTS</button>
+    
+    </div>
+
+
+
+    <script>      
+        
+        // event listener for add product button
+        document.getElementById("add-product-btn").addEventListener("click",event=>{
+
+            if(document.getElementById("brandName").value.trim()== ""|| document.getElementById("watchType").value.trim()==""||document.getElementById("gender").value.trim()==""||document.getElementById("watchColor").value.trim()==""||document.getElementById("watchSize").value.trim()==""||document.getElementById("watchPrice")==""||document.getElementById("caseMaterial").value.trim()==""||document.getElementById("band").value.trim()==""||document.getElementById("quantity")==""||document.getElementById("description").value.trim()==""||document.getElementById("image").value.trim()==""){
+                alert("All Fields required");
+                event.preventDefault();
+            }
+            else{
+                addProduct();
+            }
+        });
+
+        //do whatever an submit the form
+        function addProduct(){
+
+            let request = new XMLHttpRequest();
+            
+            //Create event handler that specifies what should happen when server responds
+            request.onload = function(){
+                   
+                //Check HTTP status code
+                    if(request.status === 200){
+                        //Get data from server
+                        var responseData = request.responseText;
+
+                        // if products are added successfully
+                        //Add data to page
+                        if(responseData === "ok"){
+                            alert("Products added Successfully")
+                        }
+                        // error in adding
+                        else
+                            alert(responseData)
+                    }
+                    else
+                        alert("Error communicating with server");
+            };
+
+            //Extract product data for adding
+            let brandName= document.getElementById("brandName").value.trim();
+            let watchType= document.getElementById("watchType").value.trim();
+            let gender= document.getElementById("gender").value.trim();
+            let watchColor= document.getElementById("watchColor").value.trim();
+            let watchSize= document.getElementById("watchSize").value.trim();
+            let watchPrice= parseInt(document.getElementById("watchPrice").value.trim(),10);
+            let caseMaterial= document.getElementById("caseMaterial").value.trim();
+            let band= document.getElementById("band").value.trim();
+            let quantity= parseInt(document.getElementById("quantity").value.trim(),10);
+            let description= document.getElementById("description").value.trim();
+            let image= document.getElementById("image").value.trim();
+                    
+            //Set up and send request
+            request.open("POST", "addProduct.php");
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send("brandName="+brandName+" &watchType="+watchType+" &gender="+gender+" &watchColor="+watchColor+" &watchSize="+watchSize+" &caseMaterial="+caseMaterial+" &band="+band+" &watchPrice="+watchPrice+" &quantity="+quantity+" &description="+description+" &image="+image);
+        }
+
+
+        
+    </script>
+    
+</body>
+</html>

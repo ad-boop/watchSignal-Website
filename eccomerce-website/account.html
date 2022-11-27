@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+    <link rel = "icon" type = "image/png" href = "images/logo.png">
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/form.css">
+
+    <!-- online stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/5f8b2c930b.js" crossorigin="anonymous"></script>
+    
+    <!-- internal css for cart html -->
+    <style>
+      body{
+        width: 100%;
+        height: 100vh;
+        background-image: url("images/cart-bg.jpg");
+        background-position: center;
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+    </style>
+</head>
+
+<body>
+    <header>
+       <!-- logo -->
+       <h2 class="logo"><a href="home.html"><span>w</span>atch <span>s</span>ignal</a></h2>
+        
+        
+
+        <!-- nav-bar within the header -->
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a class="button" type="submit" href="search.html" id="search-button">
+                    <p style="font-size: 15px; background-color: #283044ff; color: #f2f2f2; border-radius: 10px; padding: 4%;">SEARCH</p>
+                  </a>
+                </li>
+            </ul>
+        </nav>
+        <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+        
+        <!-- toggle button when screen is small -->
+        <i class="fas fa-bars" onclick="menutoggle()"></i>
+        <i class="fas fa-times" style="visibility: hidden;"></i>
+    </header>
+
+    <!--watch categories header -->
+    <div class="categories-header">
+        <ul id="MenuItems">
+            <li><a href="analog.html">analog</a></li>
+            <li><a href="digital.html">digital</a></li>
+            <li><a href="smart.html">smart</a></li>
+        </ul>
+    </div>
+    
+    
+    <!-- Profile form -->
+<section class="Profile-form">
+    <div class="message"></div>
+
+    <div class="row">
+        <!-- table for PREVIOUS ORDERS -->
+        <div class="column">
+                    <div class="container prev-orders">
+                        <h2 class="title">Previous Orders</h2>
+                        
+                        <table >
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Order Date</th>
+                                    <th>Total Amount</th>
+                                </tr>
+                            </thead>
+                            <!-- WHERE PREVIOUS ORDERS WILL BE DISPLAYED -->
+                            <tbody align="center" id="table_body">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+        </div>
+
+        <!-- LOGGED IN USER FORM UPDATE -->
+            <div class="column update-info">
+                <div class="container" id="form-container">
+                
+                    <h2 class="title">My Profile</h2>
+                    <!-- the form -->
+                
+                        <div class="user-details">
+                            <!-- CUSTOMER ID CANT EDIT-->
+                            <div class="form-control">
+                                <label>Customer ID</label>
+                                <input type="text"  id="customerID" disabled/>
+                            </div>
+                            <!-- first name -->
+                            <div class="form-control">
+                                <label>First Name</label>
+                                <input type="text"  id="firstName" />
+                            </div>
+                            <!-- last name -->
+                            <div class="form-control">
+                                <label>Last Name</label>
+                                <input type="text"  id="lastName" />
+                            </div>
+                
+                            <!-- email id CANT EDIT-->
+                            <div class="form-control">
+                                <label>Email</label>
+                                <input type="email"  id="email" disabled/>
+                            </div>
+
+                            <!-- password -->
+                            <div class="form-control">
+                                <label>Password</label>
+                                <input type="password" id="password"  />
+                
+                            </div>
+                            <!-- phone number -->
+                            <div class="form-control">
+                                <label>Phone Number</label>
+                                <input  id="phoneNumber" />
+                
+                            </div>
+                            <!-- address -->
+                            <div class="form-control">
+                                <label>Address</label>
+                                <input type="text"  id="address" />
+                
+                            </div>
+                            <!-- EMIRATE -->
+                            <div class="form-control">
+                            <label>Emirate</label>
+                            <select name="" id="emirate" >
+                                <option value="Dubai">Dubai</option>
+                                <option value="Abu Dhabi">Abu Dhabi</option>
+                                <option value="Sharjah">Sharjah</option>
+                                <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                                <option value="Fujairah">Fujairah</option>
+                                <option value="Umm Al Quwainn">Umm Al Quwainn</option>
+                                <option value="Ajman">Ajman</option>
+                            </select>
+                        </div>
+
+                            <!-- submit button -->
+                        <button onclick="updateCustomerDetails()">Update</button>
+                    </div>
+            </div>
+    </div>
+</section>
+
+    <!-- footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>watch signal</h3>
+            <p>For the love of watch, timeless</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
+            <div class="admin-login">
+                <a href="../cms/home.html">Admin Login</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy;2020 watch signal. designed by <span>group-5</span></p>
+        </div>
+    </footer>
+
+    
+    <!-- JS FOR TOGGLE MENU -->
+    <script src="js/main.js"></script>
+
+    <!-- JS FOR UPDATING ACCOUNT GETTING PREVIOUS ORDERS -->
+    <script>
+
+        let request = new XMLHttpRequest();
+      
+        //Check login when page loads
+        window.onload = checkLoginUser;
+        
+        //Checks whether user is logged in.
+        function checkLoginUser(){
+
+            //Create event handler that specifies what should happen when server responds
+            request.onload = function(){
+                if(request.responseText === "ok"){
+                        console.log(request.responseText)
+                        getLoggedInUserDetails();
+                }
+                else{
+                    console.log(request.responseText);
+                }
+            };
+            //Set up and send request
+            request.open("GET", "php/loginCheck.php");
+            request.send();
+        }
+
+      function getLoggedInUserDetails(){
+            //Create event handler that specifies what should happen when server responds
+            var responseData = request.responseText;
+            request.onload = function(){
+                        //Check HTTP status code
+                        if(request.status === 200){
+                            //Get data from server
+                            var responseData = request.responseText;
+
+                            displayCustomerDetails(responseData);
+                        }
+                        else
+                            alert("Couldnt connect to the Server");
+            };
+
+            //Set up and get the logged in user details to account.php
+            request.open("GET", "php/account.php");
+            request.send();
+        
+        }
+
+            // function for displaying the customer details in the form
+        function displayCustomerDetails(jsonProducts){
+           
+            // getting json data from php
+           let customerArray=JSON.parse(jsonProducts);
+
+           let htmlStr="";
+           for(let i=0; i<customerArray.length; ++i){
+
+                document.getElementById("customerID").value= customerArray[i]._id.$oid;
+                document.getElementById("firstName").value= customerArray[i].first_name;
+                document.getElementById("lastName").value= customerArray[i].last_name;
+                document.getElementById("email").value= customerArray[i].email_id;
+                document.getElementById("password").value= customerArray[i].password;
+                document.getElementById("phoneNumber").value= customerArray[i].telephone;
+                document.getElementById("address").value= customerArray[i].home_address;
+                document.getElementById("emirate").value= customerArray[i].emirate;         
+           }
+       }
+
+        // =======================================UPDATE CUSTOMER INFO===============================================================   
+       // function for updating details of the user except for customer id and email
+       function updateCustomerDetails(){
+                request.onload = function(){
+                    //Check HTTP status code
+                    if(request.status === 200){
+                        //Get data from server
+                        var responseData = request.responseText;
+
+                        //IF CUSTOMERS DETAILS SUCCESSFULLY UPDATED
+                        if(responseData === "ok"){
+                            console.log(responseData);
+                        alert("Customer Details Successfully Updated")
+                        }
+                        // ERROR
+                        else{
+                            alert(responseData);
+                        }
+                        
+                    }
+                    else
+                        alert("Couldnt connect to the Server");
+                };
+
+                 // getting the values of the form input fields
+                let id=document.getElementById("customerID").value.trim()
+                let first_name=document.getElementById("firstName").value.trim()
+                let last_name=document.getElementById("lastName").value.trim()
+                let email_id=document.getElementById("email").value.trim()
+                let password=document.getElementById("password").value.trim()
+                let telephone=document.getElementById("phoneNumber").value.trim()
+                let home_address=document.getElementById("address").value.trim()
+                let emirate=document.getElementById("emirate").value.trim()
+
+                // sending data to php
+                request.open("POST", "php/account_replace.php");
+                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                request.send("customer_id="+id+" &first_name="+first_name+" &last_name="+last_name+" &email_id="+email_id+" &password="+password+
+                " &telephone="+telephone+" &home_address="+home_address+" &emirate="+emirate);
+       }
+
+
+
+
+        // ===================================================================================================================
+        //    SHOW PREVIOUS ORDERS
+
+        // getting the previous orders function
+        getLoggedInUserPrevOrders();
+
+        function getLoggedInUserPrevOrders(){
+          //Create event handler that specifies what should happen when server responds
+            
+            var responseData = request.responseText;
+            request.onload = function(){
+                    //Check HTTP status code
+                    if(request.status === 200){
+                        //Get data from server
+                        var responseData = request.responseText;
+                        // DIPLAY PREVIOUS ORDERS USING RESPONSEDATA
+                        displayPrevOrders(responseData);
+                    }
+                    else
+                        alert("Couldnt connect to the Server");
+                };
+
+                //Set up and get the ORDER DETAILS FROM PREVIOUS_ORDERS.php
+                request.open("GET", "php/previous_orders.php");
+                request.send();
+        
+        }
+
+        // FUNCTION FOR DISPLAYING PREVIOUS ORDERS
+        function displayPrevOrders(jsonProducts){
+            // getting json data from php
+                let orderArray=JSON.parse(jsonProducts);
+    
+                let htmlStr="";
+                // TABLULAR FORM
+                for(let i=0; i<orderArray.length; ++i){
+                    htmlStr += '<tr>';
+                    htmlStr += '<td>'+orderArray[i]._id.$oid+'</td>';
+                    htmlStr += '<td>'+orderArray[i].order_date+'</td>';
+                    htmlStr += '<td>'+orderArray[i].total_amount+'</td>';
+                    htmlStr += '</tr>';
+                }
+                document.querySelector("#table_body").innerHTML = htmlStr;
+        }
+
+    </script>
+</body>
+</html>

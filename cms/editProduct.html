@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Products</title>
+    <link rel="stylesheet" href="css/cmsStyle.css">
+</head>
+<body>
+    <h1>Watch Signal</h1>
+    <!-- navabar -->
+    <div id="navbar"> 
+        <ul> 
+          <li><a href="viewProduct.html">View Products</a></li> 
+          <li><a href="addProduct.html">Add Product</a></li> 
+          <li><a href="editProduct.html">Edit Product</a></li>
+          <li><a href="deleteProduct.html">Delete Product</a></li>
+          <li><a href="viewOrders.html">View Orders</a></li>
+          <li><a href="deleteOrders.html">Delete Orders</a></li>
+          <li><a href="staffLogout.html">Logout</a></li>
+        </ul> 
+    </div> 
+    
+   
+    <!-- container for updating info of exisitng products -->
+    <div class="form-container">
+        <h2>Update Product Information</h2>
+                          
+        <div id="find_product">
+            <form action="findProduct.php" method="post">
+
+                <!-- find product id for editing-->
+                <label for="productID">Product ID</label>
+                <input type="text" id="productID" name="productID" >
+                
+                <button type="submit">Find Product</button>
+                <input type="hidden" id="productIDEdit" >
+            </form>
+        </div>
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration</title>
+    <link rel="icon" type="image/png" href="images/logo.png" />
+
+    <!-- style sheets -->
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/form.css" />
+
+    <!-- online style sheets -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/5f8b2c930b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <!-- logo -->
+      <h2 class="logo">
+        <a href="home.html"><span>w</span>atch <span>s</span>ignal</a>
+      </h2>
+
+      <!-- nav-bar within the header -->
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="account.html">Account</a></li>
+          <li><a class="button" type="submit" href="search.html" id="search-button">
+            <p style="font-size: 15px; background-color: #283044ff; color: #f2f2f2; border-radius: 10px; padding: 4%;">SEARCH</p>
+          </a></li>
+        </ul>
+      </nav>
+      <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+
+      <!-- toggle button when screen is small -->
+      <i class="fas fa-bars" onclick="menutoggle()"></i>
+      <i class="fas fa-times" style="visibility: hidden"></i>
+    </header>
+
+    <!--watch categories header -->
+    <div class="categories-header">
+      <ul id="MenuItems">
+        <li><a href="analog.html">analog</a></li>
+        <li><a href="digital.html">digital</a></li>
+        <li><a href="smart.html">smart</a></li>
+      </ul>
+    </div>
+
+    <!-- registration form -->
+    <section class="registration-form">
+        <div class="success-message">
+        </div>
+      <div class="container" id="form-container">
+        <h2 class="title">Registration</h2>
+
+        <!-- the form -->
+        
+          <!-- first name -->
+          <div class="form-control">
+            <label>First Name</label>
+            <input
+              type="text"
+              name="first_name"
+              placeholder="xxxxx"
+              id="firstName"
+            />
+          </div>
+
+          <!-- last name -->
+          <div class="form-control">
+            <label>Last Name</label>
+            <input
+              type="text"
+              name="last_name"
+              placeholder="xxxx"
+              id="lastName"
+            />
+          </div>
+
+          <!-- email id -->
+          <div class="form-control">
+            <label>Email</label>
+            <input
+              type="email"
+              name="email_id"
+              placeholder="xxx@email.com"
+              id="email"
+            />
+          </div>
+
+          <!-- password -->
+          <div class="form-control">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password_input"
+              placeholder="Password"
+              id="password"
+            />
+          </div>
+
+          <!-- password check -->
+          <div class="form-control">
+            <label>Password check</label>
+            <input
+              type="password"
+              name="password_input"
+              placeholder="Password"
+              id="password2"
+            />
+          </div>
+
+          <!-- phone number -->
+          <div class="form-control">
+            <label>Phone Number</label>
+            <input
+              type="tel"
+              name="telephone"
+              placeholder="xxx-xxxxxxx"
+              id="phoneNumber"
+            />
+          </div>
+
+          <!-- address -->
+          <div class="form-control">
+            <label>Address</label>
+            <input
+              type="text"
+              name="home_address"
+              placeholder="Address"
+              id="address"
+            />
+          </div>
+
+          <!-- emirate  -->
+          <div class="form-control">
+            <label>Emirate</label>
+            <select name="emirate_input" id="emirate">
+              <option value="Dubai">Dubai</option>
+              <option value="Abu Dhabi">Abu Dhabi</option>
+              <option value="Sharjah">Sharjah</option>
+              <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+              <option value="Fujairah">Fujairah</option>
+              <option value="Umm Al Quwainn">Umm Al Quwainn</option>
+              <option value="Ajman">Ajman</option>
+            </select>
+          </div>
+
+          
+          <button id="regButton">REGISTER</button>
+        
+      </div>
+
+      <!-- message for if user wants to login -->
+      <div class="login-message">
+        <p>Have a Account? <a href="login.html">Login</a></p>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+      <div class="footer-content">
+        <h3>watch signal</h3>
+        <p>For the love of watch, timeless</p>
+        <ul class="socials">
+          <li>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-google-plus"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-youtube"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-linkedin-square"></i></a>
+          </li>
+        </ul>
+
+        <!-- to go to cms page -->
+        <div class="admin-login">
+          <a href="../cms/home.html">Admin Login</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          copyright &copy;2020 watch signal. designed by <span>group-5</span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+    
+    <script>
+      
+        document.getElementById("regButton").addEventListener('click', event =>{
+            // trim to remove the whitespaces
+            const firstName = document.getElementById("firstName").value.trim();
+            const lastName = document.getElementById("lastName").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const password2 = document.getElementById("password2").value.trim();
+            const phoneNumber = document.getElementById("phoneNumber").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const emirate=document.getElementById("emirate").value.trim()
+
+          //   conditions for validation
+          // first name
+          if (firstName === "" || lastName ==="" || email===""|| password===""||password2===""||phoneNumber===""||address==="") {
+            alert("FILL ALL FIELDS")
+            event.preventDefault();
+          } 
+          else if(password !== password2){
+            alert("Passwords are not matching")
+          }
+          else if(!isEmail(email)){
+              alert("Email is not in correct form")
+          }
+          else {
+            submitRegForm();
+            document.querySelector(".success-message").innerHTML="<p>You have successfully created an account. You can now login</p>"
+          }
+        });
+ 
+
+      //function to check email format
+      function isEmail(email) {
+        //email regex
+        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+      }
+    
+     
+      // submiting form
+      function submitRegForm(){
+          
+
+        let request = new XMLHttpRequest();
+        
+        //Create event handler that specifies what should happen when server responds
+        request.onload = function(){
+                  //Check HTTP status code
+                  if(request.status === 200){
+                      //Get data from server
+                      var responseData = request.responseText;
+
+                      //Add data to page
+                      if(responseData === "ok"){
+                          alert("Successful Registration");//Clear error messages
+                      }
+                      else if(responseData === "Data Already Exist"){
+                          alert("Email is already taken")
+                      }
+                      else
+                         alert(request.responseText);
+                  }
+                  else
+                      alert("Error communicating with server");
+              };
+
+              //Extract registration data from form
+                const firstName = document.getElementById("firstName").value.trim();
+                const lastName = document.getElementById("lastName").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const password = document.getElementById("password").value.trim();
+                const password2 = document.getElementById("password2").value.trim();
+                const phoneNumber = document.getElementById("phoneNumber").value.trim();
+                const address = document.getElementById("address").value.trim();
+                const emirate=document.getElementById("emirate").value.trim()
+              
+              //Set up and send request to php
+              request.open("POST", "php/registration.php");
+              request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                
+                //   send data tp php
+              request.send("first_name=" + firstName + " &last_name=" + lastName+
+              " &email_id="+email+" &password_input="+password+
+              " &telephone="+phoneNumber+" &home_address="+address+
+              " &emirate_input="+emirate);
+            }
+
+    </script>
+  </body>
+</html>
